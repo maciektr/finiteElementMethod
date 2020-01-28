@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{geometry}
+\usepackage{mathabx}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{siunitx}
+\usepackage{listings}
+
+\geometry{
+a4paper,
+total={170mm,257mm},
+left=20mm,
+top=20mm
+}
+\renewcommand\thesection{}
+\title{Metoda elementów skończonych\\ Projekt zaliczeniowyN}
+\author{Maciej Trątnowiecki}
+\date{AGH, Styczeń 2020}
+
+
+\begin{document}
+    \maketitle
+    \section{Problem obliczeniowy}
+        Przypadł mi problem transportu ciepła.  \\
+        $$-k(x)\frac{d^2u(x)}{dx^2}=0$$
+        $$u(2) = 0$$
+        $$\frac{du(0)}{dx}+u(0)=20$$
+        $$k(x) =\begin{cases}1 \quad dla \quad  x\in[0,1] \\ 2\quad dla\quad x \in (1,2] \end{cases}$$
+        Szukaną jest funkcja u spełniająca:
+        $$[0,2]\ni x\to u(x)\in\mathbb{R}$$
+    \section{Postać wariacyjna}
+    Niech $v(2)=0$
+    $$\int_0^2-k(x)u''(x)v(x)dx = 0$$
+    $$\int_0^2-k(x)u''(x)v(x)dx =-\int_0^1u''(x)v(x)dx-2\int_1^2u''(x)v(x)dx$$
+    $$-\int_0^1u''(x)v(x)dx-2\int_1^2u''(x)v(x)dx = -[u'(x)v(x)]_0^1+\int_0^1v'(x)u'(x)dx-2[u'(x)v(x)]_1^2+2\int_1^2v'(x)u'(x)dx$$
+    $$-[u'(x)v(x)]_0^1-2[u'(x)v(x)]_1^2=-u'(1)v(1)+u'(0)v(0)-2u'(2)v(2)+2u'(1)v(1) = u'(1)v(1)+u'(0)v(0)=$$
+    $$=u'(1)v(1)+v(0)(20-u(0))$$
+    $$\iff u'(1)v(1)+v(0)(20-u(0)) +\int_0^1v'(x)u'(x)dx+2\int_1^2v'(x)u'(x)dx=0$$
+    
+    Otrzymuje sformułowanie wariacyjne:
+    $$\begin{cases}
+    B(u,v) = u'(1)v(1)-u(0)v(0)+\int_0^1v'(x)u'(x)dx+2\int_1^2v'(x)u'(x)dx\\
+    L(v) = -20v(0)\\
+    B(u,v) = L(v)\\
+    u(2)=0\quad\land\quad v(2)=0
+    \end{cases}$$
+    
+    
+
+        
+\end{document}
