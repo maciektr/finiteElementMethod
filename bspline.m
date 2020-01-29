@@ -28,4 +28,15 @@ for k = 1:N
         end
     end
 end
-B
+% B
+
+l = @(v) (20-v(0));
+L = l(e((1:N)));
+% L
+
+W = L/B;
+
+r = @(x) y(x,(1:N)) .* W((1:N));
+res = @(x) sum(r(x));
+fplot(res);
+
