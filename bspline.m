@@ -38,9 +38,9 @@ l = @(v) (-20*v(0));
 L = l(e((1:N)));
 L
 
-W = L/B;
+W = L/B';
 W
 r = @(x) y(x,(1:N)) .* W((1:N));
 res = @(x) sum(r(x)); 
- fplot(res,[0 2]);
+fplot(res,[0 2]);
 
