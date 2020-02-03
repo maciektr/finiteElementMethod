@@ -26,10 +26,10 @@ b = @(u,v) (diff(u,1)*v(1)-u(0)*v(0)+integral(@(x)(diff(u,x) .* diff(v,x)),0,1) 
 
 B = sparse(N,N);
 for k = 1:N
-    for m = 1:N
-        if max(k,m) - min(k,m) <= 1
-            B(k,m) = b(e(k),e(m));
-        end
+    B(k,k) = b(e(k),e(k));
+    if k+1<=N
+        B(k,k+1) = b(e(k),e(k+1));
+        B(k+1,k) = b(e(k+1),e(k));
     end
 end
 B
@@ -43,4 +43,3 @@ W
 r = @(x) y(x,(1:N)) .* W((1:N));
 res = @(x) sum(r(x)); 
 fplot(res,[0 2]);
-
